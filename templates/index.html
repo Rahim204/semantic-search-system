@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Semantic Search & Suitability Engine</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Document Suitability Analyzer</h1>
+      <p>Upload a book or document to determine whether your target topic is covered deeply enough.</p>
+    </header>
+
+    <form id="analyzeForm" class="search-card">
+      <div class="input-grid">
+        <!-- File Upload Box -->
+        <div class="input-group">
+          <label for="docFile">Source Document (.pdf, .docx)</label>
+          <div class="file-dropzone" id="dropzone">
+            <input type="file" id="docFile" name="document" accept=".pdf,.docx" required>
+            <div class="dropzone-label" id="fileDisplay">
+              <span class="icon">📄</span>
+              <span id="fileName">Drag and drop file here or click to browse</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Search Topic Box -->
+        <div class="input-group">
+          <label for="searchQuery">Target Topic or Concept</label>
+          <textarea id="searchQuery" name="query" rows="4" placeholder="e.g., Deep learning backpropagation mechanics and loss calculation" required></textarea>
+        </div>
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn-submit">
+        <span>Analyze Document</span>
+      </button>
+    </form>
+
+    <!-- Loading State -->
+    <div id="loader" class="loader-container hidden">
+      <div class="spinner"></div>
+      <p>Analyzing document chunks and computing semantic similarity...</p>
+    </div>
+
+    <!-- Error Banner -->
+    <div id="errorBanner" class="error-banner hidden"></div>
+
+    <!-- Results Section -->
+    <section id="resultsSection" class="results-container hidden">
+      <div class="verdict-card">
+        <div class="verdict-score-box">
+          <span class="score-number" id="scoreVal">0%</span>
+          <span class="score-label">Relevance Index</span>
+        </div>
+        <div class="verdict-summary">
+          <span class="verdict-badge" id="verdictBadge">Recommended</span>
+          <p id="verdictDescription"></p>
+        </div>
+      </div>
+
+      <div class="evidence-section">
+        <h3>Top Evidence Snippets Extracted</h3>
+        <p class="evidence-subtitle">The most relevant excerpts matching your query:</p>
+        <div id="evidenceList" class="evidence-list"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
